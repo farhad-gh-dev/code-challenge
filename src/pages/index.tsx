@@ -1,5 +1,6 @@
 import Head from "next/head";
 import SiteLayout from "components/Layouts/SiteLayout";
+import { Link } from "@mui/material";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <div>testing....</div>
+        صفحه <Link href="/profile/settings">تنظیمات کاریری</Link>
       </main>
     </SiteLayout>
   );
