@@ -37,7 +37,7 @@ const SiteLayout: React.FC<Props> = ({ children }) => {
         mt: 5,
       }}
     >
-      <Box sx={{ mt: 4, width: "100%" }}>
+      <Box sx={{ my: 4, width: "100%" }}>
         {/* top bar */}
         <div>
           <Box
