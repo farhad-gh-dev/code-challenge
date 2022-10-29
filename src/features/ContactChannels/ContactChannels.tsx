@@ -4,7 +4,11 @@ import { Paper, Typography, Box } from "@mui/material";
 import NewContactChannel from "./components/NewContactChannel";
 import ChannelItem from "./components/ChannelItem";
 import type { ContactChannel } from "types/user";
-import type { SubmitNewItemFunction, UpdateItemFunction } from "./types";
+import type {
+  SubmitNewItemFunction,
+  UpdateItemFunction,
+  DeleteItemFunction,
+} from "./types";
 import translations from "./translations";
 
 interface Props {
@@ -41,6 +45,10 @@ const ContactChannels: React.FC<Props> = ({ contactsData = [] }) => {
     setContactChannels(newContactChannels);
   };
 
+  const handleDeleteItem: DeleteItemFunction = (id) => {
+    setContactChannels((state) => state.filter((item) => item.id !== id));
+  };
+
   return (
     <Paper
       sx={{
@@ -65,6 +73,7 @@ const ContactChannels: React.FC<Props> = ({ contactsData = [] }) => {
               <ChannelItem
                 key={item.id}
                 onEdit={handleContactChannelUpdate}
+                onDelete={handleDeleteItem}
                 {...item}
               />
             );

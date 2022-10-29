@@ -12,10 +12,15 @@ import translations from "../translations";
 
 interface Props {
   targetTitle: string;
+  onDelete: () => void;
 }
 
-const DeleteDialog: React.FC<Props> = ({ targetTitle = "" }) => {
+const DeleteDialog: React.FC<Props> = ({
+  targetTitle = "",
+  onDelete = () => {},
+}) => {
   const [open, setOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -67,10 +72,8 @@ const DeleteDialog: React.FC<Props> = ({ targetTitle = "" }) => {
             id="confirm-deletion"
             label={translations.confirm}
             variant="outlined"
-            // value={linkInputValue}
-            // onChange={handleLinkInput}
-            // error={linkInputError !== ""}
-            // helperText={linkInputError}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
           />
 
           <DialogActions>
@@ -78,12 +81,11 @@ const DeleteDialog: React.FC<Props> = ({ targetTitle = "" }) => {
               {translations.cancel}
             </Button>
             <Button
-              disabled
               variant="contained"
               size="small"
               type="submit"
-              onClick={handleClose}
-              autoFocus
+              onClick={onDelete}
+              disabled={inputValue !== translations.confirm}
             >
               {translations.delete}
             </Button>

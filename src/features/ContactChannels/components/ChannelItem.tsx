@@ -5,11 +5,12 @@ import { Icon } from "components/Icon";
 import { ContactChannelsForm } from "./ContactChannelForm";
 import DeleteDialog from "./DeleteDialog";
 import type { ContactChannel } from "types/user";
-import type { UpdateItemFunction } from "../types";
+import type { DeleteItemFunction, UpdateItemFunction } from "../types";
 import translations from "../translations";
 
 interface Props extends ContactChannel {
   onEdit?: UpdateItemFunction;
+  onDelete?: DeleteItemFunction;
 }
 
 const ChannelItem: React.FC<Props> = ({
@@ -17,11 +18,16 @@ const ChannelItem: React.FC<Props> = ({
   name = "",
   link = "",
   onEdit = () => {},
+  onDelete = () => {},
 }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleFormSubmit: UpdateItemFunction = (newName, newLink) => {
     onEdit(newName, newLink, id);
+  };
+
+  const handleDeleteItem = () => {
+    onDelete(id);
   };
 
   return (
@@ -81,7 +87,7 @@ const ChannelItem: React.FC<Props> = ({
           </Typography>
         </Button>
 
-        <DeleteDialog targetTitle={name} />
+        <DeleteDialog targetTitle={name} onDelete={handleDeleteItem} />
       </Grid>
 
       {/* Edit item form */}

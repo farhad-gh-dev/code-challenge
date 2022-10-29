@@ -10,3 +10,5 @@ export type UpdateItemFunction = (
   link?: string,
   id?: string
 ) => void;
+
+export type DeleteItemFunction = (id?: string) => void;
