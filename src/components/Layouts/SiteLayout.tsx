@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Container, Box, Typography, Button } from "@mui/material";
 import { Breadcrumbs } from "components/Breadcrumbs";
 import translations from "./translations";
+import { ThemeToggler } from "components/ThemeToggler";
 
 interface Props {
   children?: React.ReactNode;
@@ -50,7 +51,13 @@ const SiteLayout: React.FC<Props> = ({ children }) => {
               {getPageTitle()}
             </Typography>
 
-            <Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <Box display="flex" gap={2}>
                 <Button
                   sx={{
@@ -71,6 +78,7 @@ const SiteLayout: React.FC<Props> = ({ children }) => {
                   {translations.persian}
                 </Button>
               </Box>
+              <ThemeToggler />
             </Box>
           </Box>
 

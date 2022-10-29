@@ -4,7 +4,7 @@ import { getThemeStyles } from "styles/themes";
 import { ThemeProvider } from "@mui/material";
 import { useAppDirection } from "hooks/useAppDirection";
 
-const AppThemeContext = createContext({});
+export const AppThemeContext = createContext({});
 
 interface Props {
   children?: React.ReactNode;
